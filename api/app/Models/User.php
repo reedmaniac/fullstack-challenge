@@ -38,5 +38,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'current_weather_last_checked_at' => 'datetime',
+        'current_weather_last_updated_at' => 'datetime',
+        'forecast_last_checked_at' => 'datetime',
+        'forecast_last_updated_at' => 'datetime',
     ];
 }
