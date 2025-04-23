@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('current_weather');
+            $table->text('current_weather')->nullable();
             $table->timestamp('current_weather_last_checked_at')->nullable();
             $table->timestamp('current_weather_last_updated_at')->nullable();
 
-            $table->text('forecast');
+            $table->text('forecast')->nullable();
             $table->timestamp('forecast_last_checked_at')->nullable();
             $table->timestamp('forecast_last_updated_at')->nullable();
         });

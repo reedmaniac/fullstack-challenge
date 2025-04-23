@@ -25,6 +25,8 @@ class UserDetailResource extends JsonResource
             'longitude' => $this->longitude,
             'created_at' => $this->created_at->toIso8601String(),
             'updated_at' => $this->updated_at->toIso8601String(),
+            'forecast' => json_decode($this->forecast),
+            'weather' => json_decode($this->weather),
         ];
     }
 }
