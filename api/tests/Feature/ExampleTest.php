@@ -11,21 +11,27 @@ class ExampleTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * A basic test example.
+     * Make sure we can load the users endpoint for API
      *
      * @return void
      */
-    public function test_the_application_returns_a_successful_response()
+    public function testSuccessfulResponseForApiUsers()
     {
         $response = $this->get('/api/users');
 
         $response->assertStatus(200);
     }
 
-    public function test_database_works()
+    /**
+     * Make sure we can load single user for API
+     *
+     * @return void
+     */
+    public function testSuccessfulResponseForSingleApiUser()
     {
-        User::factory(20)->create();
+        $users = User::factory(1)->create();
+        $response = $this->get('/api/users/'.$users->first()->id);
 
-        $this->assertEquals(20, User::all()->count());
+        $response->assertStatus(200);
     }
 }
