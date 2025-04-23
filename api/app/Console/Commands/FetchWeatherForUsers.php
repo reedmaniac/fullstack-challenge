@@ -3,10 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class FetchWeatherForUsers extends Command
 {
@@ -27,8 +24,9 @@ class FetchWeatherForUsers extends Command
     {
         $apiKey = config('services.openweather_api.key');
 
-        if (!$apiKey) {
+        if (! $apiKey) {
             $this->error('Openweather API Key not set.');
+
             return;
         }
 
@@ -36,6 +34,5 @@ class FetchWeatherForUsers extends Command
             ->whereNotNull('longitude')
             ->get()
             ->each(fn ($user) => \App\Jobs\FetchWeatherForUser::dispatch($user));
-
     }
 }

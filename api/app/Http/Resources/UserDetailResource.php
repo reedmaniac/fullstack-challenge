@@ -9,15 +9,14 @@ class UserDetailResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function toArray($request)
     {
         return [
 
-            'id' => (integer) $this->id,
+            'id' => (int) $this->id,
             'name' => (string) $this->name,
             'email' => (string) $this->email,
             'email_verified_at' => $this->email_verified_at->toIso8601String(),

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Http\Resources\UserDetailResource;
 use App\Http\Resources\UserResource;
-
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -23,7 +22,7 @@ class UserController extends Controller
      */
     public function show(Request $request, User $user)
     {
-         return response()->json(
+        return response()->json(
             new UserDetailResource($user)
         );
     }

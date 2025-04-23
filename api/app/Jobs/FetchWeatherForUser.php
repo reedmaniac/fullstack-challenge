@@ -4,12 +4,12 @@ namespace App\Jobs;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class FetchWeatherForUser implements ShouldQueue
 {
@@ -29,14 +29,12 @@ class FetchWeatherForUser implements ShouldQueue
 
     /**
      * Handle the Job
-     *
-     * @return void
      */
     public function handle(): void
     {
         $this->apiKey = config('services.openweather_api.key');
 
-        if (!$this->apiKey) {
+        if (! $this->apiKey) {
             return;
         }
 
@@ -44,11 +42,8 @@ class FetchWeatherForUser implements ShouldQueue
         $this->fetchForecast();
     }
 
-
     /**
      * Fetch the Current Weather for the User
-     *
-     * @return void
      */
     public function fetchCurrentWeather(): void
     {
@@ -59,7 +54,7 @@ class FetchWeatherForUser implements ShouldQueue
 
         Log::info(sprintf('Fetching current weather for %s', $this->user->email));
 
-        $response = Http::get("https://api.openweathermap.org/data/2.5/weather", [
+        $response = Http::get('https://api.openweathermap.org/data/2.5/weather', [
             'lat' => $this->user->latitude,
             'lon' => $this->user->longitude,
             'appid' => $this->apiKey,
@@ -84,14 +79,12 @@ class FetchWeatherForUser implements ShouldQueue
 
     /**
      * Fetch Five Day Forecast for the User
-     *
-     * @return void
      */
     public function fetchForecast(): void
     {
         Log::info(sprintf('Fetching forecast for %s', $this->user->email));
 
-        $response = Http::get("https://api.openweathermap.org/data/2.5/forecast", [
+        $response = Http::get('https://api.openweathermap.org/data/2.5/forecast', [
             'lat' => $this->user->latitude,
             'lon' => $this->user->longitude,
             'appid' => $this->apiKey,
