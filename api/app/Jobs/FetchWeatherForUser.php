@@ -44,6 +44,11 @@ class FetchWeatherForUser implements ShouldQueue
 
     /**
      * Fetch the Current Weather for the User
+     *
+     * @link https://openweathermap.org/current#one
+     * @example https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}
+     *
+     * @return void
      */
     public function fetchCurrentWeather(): void
     {
@@ -79,6 +84,11 @@ class FetchWeatherForUser implements ShouldQueue
 
     /**
      * Fetch Five Day Forecast for the User
+     *
+     * @link https://openweathermap.org/forecast5#geo5
+     * @example https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={apiKey}
+     *
+     * @return void
      */
     public function fetchForecast(): void
     {

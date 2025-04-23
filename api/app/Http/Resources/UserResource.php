@@ -24,8 +24,8 @@ class UserResource extends JsonResource
             'longitude' => $this->longitude,
             'created_at' => $this->created_at->toIso8601String(),
             'updated_at' => $this->updated_at->toIso8601String(),
-            'forecast' => $this->forecast,
-            'weather' => $this->weather,
+            'current_weather' => json_decode($this->current_weather),
+            'current_weather_last_updated_at' => $this->current_weather_last_updated_at->toIso8601String(),
         ];
     }
 }

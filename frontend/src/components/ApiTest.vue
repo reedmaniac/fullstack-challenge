@@ -1,8 +1,12 @@
 <script>
+import CurrentWeatherCell from './CurrentWeatherCell.vue';
+
 export default {
   data: () => ({
     apiResponse: null
   }),
+
+  components: { CurrentWeatherCell },
 
   mounted() {
     this.fetchData()
@@ -23,6 +27,9 @@ export default {
         this.fetchData(this.currentPage + 1);
       }
     },
+    kelvinToF(kelvin) {
+      return kelvin ? Math.round((kelvin - 273.15) * 9/5 + 32) : '—';
+    }
   },
   computed: {
     from() {
@@ -63,16 +70,16 @@ export default {
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        User Name
+                        Name
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Email
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Lat / Long
+                        Latitude, Longitude
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Weather Summary
+                        Current Weather
                     </th>
                 </tr>
             </thead>
@@ -81,18 +88,16 @@ export default {
                   v-for="(row) in apiResponse.data" :key="row.id"
                   class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200"
                 >
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <a href="">{{row.name}} <i class="fa-solid fa-fw fa-arrow-up-right-from-square"></i></a>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white align-top">
+                        <a href="" class="hover:underline">{{row.name}} <i class="fa-solid fa-fw fa-arrow-up-right-from-square"></i></a>
                     </th>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 align-top">
                         {{ row.email }}
                     </td>
-                    <td class="px-6 py-4">
-                         {{ row.latitude }} / {{ row.longitude }}
+                    <td class="px-6 py-4 align-top">
+                         {{ row.latitude }}, {{ row.longitude }}
                     </td>
-                    <td class="px-6 py-4">
-                        TBD
-                    </td>
+                    <CurrentWeatherCell :weather="row.current_weather" :last_updated="row.current_weather_last_updated_at" />
                 </tr>
             </tbody>
         </table>

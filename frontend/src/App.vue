@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from "vue-router";
       </nav>
     </div>
   </header>
-  <div class="mx-0 max-w-6xl px-10 mt-5 mb-10">
+  <div class="mx-0 px-10 mt-5 mb-10">
     <RouterView />
   </div>
 </template>
