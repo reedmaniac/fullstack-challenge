@@ -1,7 +1,7 @@
 <template>
   <td class="text-sm text-gray-700 dark:text-gray-200 px-6 py-4 align-top">
     <div class="flex items-start gap-3" v-if="!weather">
-      <em>Unable to load weather at this time.</em>
+      <em>Current weather not available for this user.</em>
     </div>
     <div v-else>
       <div class="flex items-start gap-3">
