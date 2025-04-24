@@ -89,7 +89,9 @@ export default {
                   class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200"
                 >
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white align-top">
-                        <a href="" class="hover:underline">{{row.name}} <i class="fa-solid fa-fw fa-arrow-up-right-from-square"></i></a>
+                        <router-link :to="`/users/${row.id}`" class="hover:underline">
+                          {{row.name}} <i class="fa-solid fa-fw fa-arrow-up-right-from-square"></i>
+                        </router-link>
                     </th>
                     <td class="px-6 py-4 align-top">
                         {{ row.email }}
