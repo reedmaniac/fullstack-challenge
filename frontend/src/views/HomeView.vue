@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ApiTest from "@/components/ApiTest.vue";
+import ApiTest from "@/components/ListOfUsers.vue";
 </script>
 
 <template>
